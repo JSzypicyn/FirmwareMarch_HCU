@@ -49,6 +49,8 @@ void saveToCard(void) {
   dataString += (String(SetPower) + ",");
   dataString += (String(PowerMeasure) + ",");
   dataString += (String(CurrentOut) + ",");
+  dataString += (String(mode) + ",");
+  dataString += (String(digitalRead(BOOST_HCU)) + ",");
   dataFile.println(dataString);
   //Serial1.println(filectr);
   if (ctr % 500 == 0) {

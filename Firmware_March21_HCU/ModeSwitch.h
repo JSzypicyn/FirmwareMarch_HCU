@@ -32,8 +32,8 @@ void countMode() {
 /* INTERRUPT SETUP FOR MODE BUTTONS */
 void setupModeSwitch(void) {
   pinMode(MODE_BUTTON, INPUT);
-  pinMode(MODE_HCU, INPUT);
-  pinMode(BOOST_HCU, INPUT);
+  pinMode(MODE_HCU, INPUT_PULLDOWN);
+  pinMode(BOOST_HCU, INPUT_PULLDOWN);
   attachInterrupt(MODE_BUTTON, changeMode, FALLING);
   attachInterrupt(MODE_HCU, countMode, RISING);
   //attachInterrupt(BOOST_HCU, boostOn, CHANGE);
@@ -132,6 +132,13 @@ void HILL_MODE(void) {
     // INDICATE END OF STARTUP HERE AS WELL IN CASE IT IS INTERRUPTED
     standstillStart_init = false;
   }
+
+    Serial1.print(crankRPM);
+    Serial1.print("\t");
+    Serial1.print(Pedal);
+    Serial1.print("\t");
+    Serial1.print(pwr_set);
+Serial1.print("\t");
   setPowerPID(pwr_set);
 }
 

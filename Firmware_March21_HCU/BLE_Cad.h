@@ -54,9 +54,10 @@ void decodeData() {
   crankBatteryString = content.substring(8, 10);
   crankRPMString = content.substring(26, 28);
   crankBattery = crankBatteryString.toInt();
-  //Serial1.println(crankBattery);
+  
   if(crankConnected){
     crankRPM = crankRPMString.toInt();
+    //Serial1.println(crankRPM);
   } else {
     crankRPM = 0;
   }

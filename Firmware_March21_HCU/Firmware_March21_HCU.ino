@@ -37,7 +37,15 @@ void setup() {
 void loop() {
 
 
-  //Serial1.println("Hello");
+  Serial1.print(UART.data.inpVoltage);
+  Serial1.print("\t");
+    Serial1.print(UART.data.tempFET );
+  Serial1.print("\t");
+    Serial1.print(UART.data.tempMotor);
+  Serial1.print("\t");
+    Serial1.print(crankRPM);
+  Serial1.print("\t");
+  Serial1.println(UART.data.rpm);
   incline = XYZtoInc();
   //delay(15);
   checkStandstill();
@@ -47,11 +55,7 @@ void loop() {
   if ((UART.data.tempFET > 80.0) || (UART.data.tempMotor > 70.0) ) {
     setPowerPID(0, true);
   } else {
-    Serial1.print(wheelSpeed);
-    Serial1.print("\t");
-    Serial1.print(Pedal);
-    Serial1.print("\t");
-    Serial1.println(digitalRead(BOOST_HCU));
+
     if ((wheelSpeed == 0 && !Pedal && digitalRead(BOOST_HCU) ) || startupBoost ) {
       Serial1.println("BOOST");
       setPowerPID(450);
@@ -76,6 +80,7 @@ void loop() {
 
           break;
         case 1:
+
           HILL_MODE();
           m3_doonce = true;
           digitalWrite(RLED, LOW);
